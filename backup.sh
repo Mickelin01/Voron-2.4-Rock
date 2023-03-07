@@ -8,13 +8,13 @@
 config_folder=~/printer_data/config
 
 ### Path to your Klipper folder, by default that is '~/klipper'
-#klipper_folder=~/klipper
+klipper_folder=~/klipper
 
 ### Path to your Moonraker folder, by default that is '~/moonraker'
-#moonraker_folder=~/moonraker
+moonraker_folder=~/moonraker
 
 ### Path to your Mainsail folder, by default that is '~/mainsail'
-#mainsail_folder=~/mainsail
+mainsail_folder=~/mainsail
 
 ### Path to your Fluidd folder, by default that is '~/fluidd'
 #fluidd_folder=~/fluidd
@@ -43,10 +43,6 @@ grab_version() {
   if [[ -n ${mainsail_folder} ]]; then
     mainsail_ver=$(head -n 1 "${mainsail_folder}/.version")
     m3="Mainsail version: ${mainsail_ver}"
-  fi
-  if [[ -n ${fluidd_folder} ]]; then
-    fluidd_ver=$(head -n 1 "${fluidd_folder}/.version")
-    m4="Fluidd version: ${fluidd_ver}"
   fi
 }
 

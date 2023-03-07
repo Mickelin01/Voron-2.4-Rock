@@ -1,0 +1,95 @@
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/micke/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[file_manager]
+enable_object_processing = True
+
+[octoprint_compat]
+
+[history]
+
+[power voron_master]
+type = tasmota
+off_when_shutdown = False
+address = 192.168.2.126
+bound_service = klipper
+restart_klipper_when_powered = True
+
+[power voron_reset]
+type = tasmota
+off_when_shutdown = True
+address = 192.168.2.127
+bound_service = klipper
+restart_klipper_when_powered = True
+
+[mqtt]
+address = 192.168.2.96
+port = 1883
+mqtt_protocol = v3.1.1
+enable_moonraker_api = True
+instance_name = voron
+status_objects = 
+	webhooks
+	heater_bed
+	extruder
+	print_stats
+	toolhead
+	display_status
+	virtual_sdcard
+default_qos = 0
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager led_effect]
+type = git_repo
+path = ~/klipper-led_effect
+origin = https://github.com/julianschill/klipper-led_effect.git
+is_system_service = False
+
+[update_manager client z_calibration]
+type = git_repo
+path = ~/klipper_z_calibration
+origin = https://github.com/protoloft/klipper_z_calibration.git
+install_script = install.sh
+managed_services = klipper
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+install_script = tools/install.sh
+
